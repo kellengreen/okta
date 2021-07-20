@@ -7,7 +7,7 @@
 ## Steps to reproduce
 
 1. Visit http://localhost:3000/.
-2. You will be redirected to OKTA.
+2. You will be redirected to an OKTA login page.
 3. Login using `foo@bar.com` as both the username and password.
 4. You will be redirected to `http://localhost:3000/welcome`.
 5. Click the `Trigger Error` link.
