@@ -6,10 +6,11 @@
 
 ## Steps to reproduce
 
-1. Visit http://localhost:3000/
-2. Login using `foo@bar.com` as both the username and password.
-3. You will be redirected to `http://localhost:3000/welcome`.
-4. Click the `Trigger Error` link.
-4. You should now see the `Could not load PKCE codeVerifier from storage` error.
-5. Refreshing the page will yeild the more "correct" error, `Unable to retrieve OAuth redirect params from storage`. 
-6. Visit http://localhost:3000/welcome and click `Logout` to begin again.
+1. Visit http://localhost:3000/.
+2. You will be redirected to OKTA.
+3. Login using `foo@bar.com` as both the username and password.
+4. You will be redirected to `http://localhost:3000/welcome`.
+5. Click the `Trigger Error` link.
+6. You should now see the `Could not load PKCE codeVerifier from storage` error.
+7. Refreshing the page will yeild the "correct" error, `Unable to retrieve OAuth redirect params from storage`. 
+8. Visit http://localhost:3000/welcome and click `Logout` to begin the process again.
