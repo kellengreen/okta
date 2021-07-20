@@ -17,20 +17,8 @@ export default function Welcome() {
       >
         Logout
       </button>{" "}
-      <a href={`${window.location.origin}/login?code=foobar`}>Trigger Error</a>
+      <a href="/login?code=foobar">Trigger Error</a>
       <h2>Welcome "{authState.accessToken.claims.sub}"</h2>
-      <p>
-        <strong>Access Token Expires:</strong>{" "}
-        <span>
-          {new Date(authState.accessToken.expiresAt * 1000).toLocaleString()}
-        </span>
-      </p>
-      <p>
-        <strong>ID Token Expires:</strong>{" "}
-        <span>
-          {new Date(authState.idToken.expiresAt * 1000).toLocaleString()}
-        </span>
-      </p>
       <pre
         style={{
           whiteSpace: "pre-wrap",

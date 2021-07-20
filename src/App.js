@@ -10,10 +10,7 @@ import LoginCallback from "./components/LoginCallback";
 
 const oktaAuth = new OktaAuth({
   issuer: "https://dev-79267171.okta.com/oauth2/default",
-  clientId: {
-    3000: "0oa18rgt77QSgzzXv5d7",
-    4000: "0oa192qyjgTAUADL55d7",
-  }[window.location.port],
+  clientId: "0oa18rgt77QSgzzXv5d7",
   redirectUri: `${window.location.origin}/login`,
 });
 
@@ -30,7 +27,7 @@ export default function App() {
         <SecureRoute path="/welcome" exact>
           <Welcome />
         </SecureRoute>
-        <Route path={new URL(oktaAuth.options.redirectUri).pathname} exact>
+        <Route path="/login" exact>
           <LoginCallback />
         </Route>
         <Route path="/" exact>
