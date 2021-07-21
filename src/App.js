@@ -4,6 +4,7 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import { OktaAuth } from "@okta/okta-auth-js";
 import { Security, SecureRoute } from "@okta/okta-react";
 
+import Nav from "./components/Nav";
 import Welcome from "./components/Welcome";
 import LoginRedirect from "./components/LoginRedirect";
 import LoginCallback from "./components/LoginCallback";
@@ -12,6 +13,7 @@ const oktaAuth = new OktaAuth({
   issuer: "https://dev-79267171.okta.com/oauth2/default",
   clientId: "0oa18rgt77QSgzzXv5d7",
   redirectUri: `${window.location.origin}/login`,
+  postLogoutRedirectUri: `${window.location.origin}/`,
 });
 
 export default function App() {
@@ -23,6 +25,7 @@ export default function App() {
 
   return (
     <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
+      <Nav />
       <Switch>
         <SecureRoute path="/welcome" exact>
           <Welcome />
