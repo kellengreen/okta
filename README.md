@@ -1,7 +1,8 @@
-## Test suite for OKTA bug 898
+## Test suite for OKTA bugs
 
 See [here](https://github.com/okta/okta-oidc-js/issues/898) for further information.
 And [more fun](https://github.com/okta/okta-react/issues/148).
+
 ## Start the SWA locally
 
 1. Install node.
