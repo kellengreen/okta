@@ -5,7 +5,7 @@ And [more fun](https://github.com/okta/okta-react/issues/148).
 
 ## Start the SWA locally
 
-1. Install node.
+1. Install [node](https://nodejs.org/en/download/).
 2. `npm install` 
 3. `npm start`
 
