@@ -13,7 +13,7 @@ See [here](https://github.com/okta/okta-oidc-js/issues/898) for further informat
 2. You will be redirected to an OKTA login page.
 3. Login using `foo@bar.com` as both the username and password.
 4. You will be redirected to `http://localhost:3000/welcome`.
-5. Click the `Trigger Error` link.
+5. Click the `Error` link.
 6. You should now see the `Could not load PKCE codeVerifier from storage` error.
 7. Refreshing the page will yeild the "correct" error, `Unable to retrieve OAuth redirect params from storage`. 
 8. Visit http://localhost:3000/welcome and click `Logout` to begin the process again.
