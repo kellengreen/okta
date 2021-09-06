@@ -23,8 +23,18 @@ export default function App() {
     [history]
   );
 
+  // Suggested workaround. Didn't see any differences.
+  // const onAuthRequired = useCallback(() => {
+  //   console.log("onAuthRequired");
+  //   history.push("/logout");
+  // }, [history]);
+
   return (
-    <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
+    <Security
+      oktaAuth={oktaAuth}
+      restoreOriginalUri={restoreOriginalUri}
+      // onAuthRequired={onAuthRequired}
+    >
       <Nav />
       <Switch>
         <SecureRoute path="/welcome" exact>
