@@ -13,7 +13,7 @@ And [more fun](https://github.com/okta/okta-react/issues/148).
 * The username and password for the OKTA client is `foo@bar.com`.
 * To begin a new session visit http://localhost:3000/ directly and click `Logout`.
 
-### Reproduce PKCE storage 🐛
+### Reproduce PKCE storage bug
 
 1. Visit http://localhost:3000/.
 2. Login ([see credentials](https://github.com/kellengreen/okta#details-on-reproducing-issues)).
@@ -21,14 +21,14 @@ And [more fun](https://github.com/okta/okta-react/issues/148).
 4. 🐛 You should see the `Could not load PKCE codeVerifier from storage` error.
 5. Refreshing the page will yeild the "correct" error, `Unable to retrieve OAuth redirect params from storage`. 
 
-### Reproduce logout promise hang 🐛
+### Reproduce logout promise hangs bug
 
 1. Visit http://localhost:3000/.
 2. Login ([see credentials](https://github.com/kellengreen/okta#details-on-reproducing-issues)).
 3. Click the `Error` link.
 4. 🐛 Nothing happens and the promise doesn't return (see dev tools).
 
-### Reproduce SecureRoute returns null 🐛
+### Reproduce SecureRoute returns null bug
 
 1. Visit http://localhost:3000/login?code=foobar directly.
 2. Click the `Welcome` link.
