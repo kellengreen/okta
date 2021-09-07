@@ -16,7 +16,7 @@ And [more fun](https://github.com/okta/okta-react/issues/148).
 ### Reproduce PKCE storage 🐛
 
 1. Visit http://localhost:3000/.
-2. Login (see credentials above).
+2. Login ([see credentials](https://github.com/kellengreen/okta#details-on-reproducing-issues)).
 3. Click the `Error` link.
 4. 🐛 You should see the `Could not load PKCE codeVerifier from storage` error.
 5. Refreshing the page will yeild the "correct" error, `Unable to retrieve OAuth redirect params from storage`. 
@@ -24,7 +24,7 @@ And [more fun](https://github.com/okta/okta-react/issues/148).
 ### Reproduce logout promise hang 🐛
 
 1. Visit http://localhost:3000/.
-2. Login (see credentials above).
+2. Login ([see credentials](https://github.com/kellengreen/okta#details-on-reproducing-issues)).
 3. Click the `Error` link.
 4. 🐛 Nothing happens and the promise doesn't return (see dev tools).
 
