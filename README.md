@@ -3,7 +3,7 @@
 See [here](https://github.com/okta/okta-oidc-js/issues/898) for further information.
 And [more fun](https://github.com/okta/okta-react/issues/148).
 
-## Start the SWA locally
+## Start the app locally
 
 1. Install [node](https://nodejs.org/en/download/).
 2. `npm install` 
@@ -26,7 +26,8 @@ And [more fun](https://github.com/okta/okta-react/issues/148).
 1. Visit http://localhost:3000/.
 2. Login ([see credentials](https://github.com/kellengreen/okta#details-on-reproducing-issues)).
 3. Click the `Error` link.
-4. 🐛 Nothing happens and the promise doesn't return (see dev tools).
+4. Click the `Logout` button.
+5. 🐛 Nothing happens and the promise doesn't resolve (see dev tools).
 
 ### Reproduce SecureRoute returns null bug
 
