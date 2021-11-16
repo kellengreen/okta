@@ -3,13 +3,17 @@ import { useOktaAuth } from "@okta/okta-react";
 import { Link } from "react-router-dom";
 
 export default function Welcome() {
-  const [disabled, setDisabled] = useState(false);
   const { oktaAuth } = useOktaAuth();
-
+  const [disabled, setDisabled] = useState(false);
   return (
     <div>
-      <Link to="/welcome">Welcome</Link> |{" "}
-      <Link to="/login?code=foobar">Error</Link> |{" "}
+      <Link to="/">Home</Link> | <Link to="/user">User</Link> |{" "}
+      <Link
+        to={`${new URL(oktaAuth.options.redirectUri).pathname}?code=foobar`}
+      >
+        Error
+      </Link>{" "}
+      |{" "}
       <button
         disabled={disabled}
         onClick={() => {

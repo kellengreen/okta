@@ -1,51 +1,38 @@
 import { useCallback } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
+import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
 
-import { OktaAuth } from "@okta/okta-auth-js";
-import { Security, SecureRoute } from "@okta/okta-react";
-
+import auth from "./auth.js";
 import Nav from "./components/Nav";
-import Welcome from "./components/Welcome";
-import LoginRedirect from "./components/LoginRedirect";
-import LoginCallback from "./components/LoginCallback";
-
-const oktaAuth = new OktaAuth({
-  issuer: "https://dev-79267171.okta.com/oauth2/default",
-  clientId: "0oa18rgt77QSgzzXv5d7",
-  redirectUri: `${window.location.origin}/login`,
-  postLogoutRedirectUri: `${window.location.origin}/`,
-});
+import User from "./components/User";
+import ErrMsg from "./components/ErrMsg";
 
 export default function App() {
   const history = useHistory();
   const restoreOriginalUri = useCallback(
-    (_, originalUri) => history.replace(originalUri || "/"),
+    (_, originalUri = "/") => history.replace(originalUri),
     [history]
   );
 
-  // Suggested workaround. Didn't see any differences.
-  // const onAuthRequired = useCallback(() => {
-  //   console.log("onAuthRequired");
-  //   history.push("/logout");
-  // }, [history]);
-
   return (
-    <Security
-      oktaAuth={oktaAuth}
-      restoreOriginalUri={restoreOriginalUri}
-      // onAuthRequired={onAuthRequired}
-    >
+    <Security oktaAuth={auth} restoreOriginalUri={restoreOriginalUri}>
       <Nav />
       <Switch>
-        <SecureRoute path="/welcome" exact>
-          <Welcome />
+        <SecureRoute path="/" exact errorComponent={ErrMsg}>
+          <h2>Welcome!</h2>
         </SecureRoute>
-        <Route path="/login" exact>
-          <LoginCallback />
+
+        <SecureRoute path="/user" exact errorComponent={ErrMsg}>
+          <User />
+        </SecureRoute>
+
+        <Route path={new URL(auth.options.redirectUri).pathname} exact>
+          <LoginCallback
+            loadingElement={<h2>Authenticating...</h2>}
+            errorComponent={ErrMsg}
+          />
         </Route>
-        <Route path="/" exact>
-          <LoginRedirect path="/welcome" />
-        </Route>
+
         <Route>
           <h2>404</h2>
         </Route>
