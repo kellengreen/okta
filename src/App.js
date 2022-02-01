@@ -2,10 +2,9 @@ import { useCallback } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
 
+import Nav from "./Nav";
 import auth from "./auth.js";
-import Nav from "./components/Nav";
-import User from "./components/User";
-import ErrMsg from "./components/ErrMsg";
+import ErrMsg from "./ErrMsg";
 
 export default function App() {
   const history = useHistory();
@@ -19,11 +18,7 @@ export default function App() {
       <Nav />
       <Switch>
         <SecureRoute path="/" exact errorComponent={ErrMsg}>
-          <h2>Welcome!</h2>
-        </SecureRoute>
-
-        <SecureRoute path="/user" exact errorComponent={ErrMsg}>
-          <User />
+          <h2>Hello, user!</h2>
         </SecureRoute>
 
         <Route path={new URL(auth.options.redirectUri).pathname} exact>
