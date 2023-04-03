@@ -8,11 +8,6 @@ export default function Welcome() {
   return (
     <div>
       <Link to="/">Home</Link>{" "}
-      <Link
-        to={`${new URL(oktaAuth.options.redirectUri).pathname}?code=foobar`}
-      >
-        Error
-      </Link>{" "}
       <button
         disabled={disabled}
         onClick={() => {

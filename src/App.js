@@ -1,37 +1,42 @@
 import { useCallback } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
-import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
+import { Route, useNavigate, Routes } from "react-router-dom";
+import { Security, LoginCallback } from "@okta/okta-react";
 
 import Nav from "./Nav";
+import User from "./User";
 import auth from "./auth.js";
-import ErrMsg from "./ErrMsg";
+import Authenticated from "./Authenticated";
 
 export default function App() {
-  const history = useHistory();
+  const navigate = useNavigate();
+
   const restoreOriginalUri = useCallback(
-    (_, originalUri = "/") => history.replace(originalUri),
-    [history]
+    (_, originalUri = "/") => navigate(originalUri),
+    [navigate]
   );
 
   return (
     <Security oktaAuth={auth} restoreOriginalUri={restoreOriginalUri}>
       <Nav />
-      <Switch>
-        <SecureRoute path="/" exact errorComponent={ErrMsg}>
-          <h2>Hello, user!</h2>
-        </SecureRoute>
-
-        <Route path={new URL(auth.options.redirectUri).pathname} exact>
-          <LoginCallback
-            loadingElement={<h2>Authenticating...</h2>}
-            errorComponent={ErrMsg}
-          />
+      <Routes>
+        <Route
+          path={new URL(auth.options.redirectUri).pathname}
+          element={
+            <LoginCallback
+              loadingElement={<h2>Loading...</h2>}
+              errorComponent={({ error }) => <strong>{error.message}</strong>}
+            />
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <Authenticated loadingElement={<h2>Authenticating...</h2>} />
+          }
+        >
+          <Route path="/" element={<User />} />
         </Route>
-
-        <Route>
-          <h2>404</h2>
-        </Route>
-      </Switch>
+      </Routes>
     </Security>
   );
 }
